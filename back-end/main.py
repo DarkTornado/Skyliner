@@ -52,7 +52,7 @@ def init():
             for e in data['TS']:
                 if (e['id'] == 'E' + stns[i]['id']):
                     for train in e['tr']:
-                        # if train['sy'] != '0': continue
+                        if train['sy'] != '0': continue # 스카이라이너 필터링
                         ud = 'up'
                         if train['hk'] == '1': ud = 'dn'
                         result[i][ud].append({
@@ -65,7 +65,7 @@ def init():
             for e in data['EK']:
                 if (e['id'][1:] == stns[i]['id']):
                     for train in e['tr']:
-                        # if train['sy'] != '0': continue
+                        if train['sy'] != '0': continue # 스카이라이너 필터링
                         ud = 'up'
                         if train['hk'] == '1': ud = 'dn'
                         result[i][ud].append({
