@@ -37,6 +37,12 @@ def init():
         {"stn":"공항제2빌딩 (空港第2ビル)", "id":"044"},{"stn":"나리타공항 (成田空港)", "id":"045"}
     ]
 
+    # 종점 목록
+    terms = {
+        '1': '우에노',
+        '45': '나리타 공항'
+    }
+
     result = []
     for stn in stns:
         result.append({
@@ -56,7 +62,7 @@ def init():
                         ud = 'up'
                         if train['hk'] == '1': ud = 'dn'
                         result[i][ud].append({
-                           'terminal': train['ik'],
+                           'terminal': terms[train['ik']],
                            'type': train['sy'],
                            'status': '도착'
                         })
@@ -69,7 +75,7 @@ def init():
                         ud = 'up'
                         if train['hk'] == '1': ud = 'dn'
                         result[i][ud].append({
-                           'terminal': train['ik'],
+                           'terminal': terms[train['ik']],
                            'type': train['sy'],
                            'status': '접근'
                         })
