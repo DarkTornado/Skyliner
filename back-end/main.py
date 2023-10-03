@@ -46,6 +46,34 @@ def init():
         })
 
     data = response.json()
+    for i in range(len(result)):
+
+        if data['TS']: #역에 열차가 있는 경우 TS
+            for e in data['TS']:
+                if (e['id'] == 'E' + stns[i]['id']):
+                    for train in e['tr']:
+                        # if train['sy'] != '0': continue
+                        ud = 'up'
+                        if train['hk'] == '1': ud = 'dn'
+                        result[i][ud].append({
+                           'terminal': train['ik'],
+                           'type': train['sy'],
+                           'status': '도착'
+                        })
+        
+        if data['EK']: #역으로 열차가 이동 중인 경우 EK
+            for e in data['EK']:
+                if (e['id'][1:] == stns[i]['id']):
+                    for train in e['tr']:
+                        # if train['sy'] != '0': continue
+                        ud = 'up'
+                        if train['hk'] == '1': ud = 'dn'
+                        result[i][ud].append({
+                           'terminal': train['ik'],
+                           'type': train['sy'],
+                           'status': '접근'
+                        })
+
 
 
     
