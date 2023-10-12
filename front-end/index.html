@@ -9,6 +9,7 @@
         margin: 0px;
         font-family: NanumGothic;
     }
+
     div.header {
         padding: 12px;
         color: white;
@@ -16,9 +17,11 @@
         font-size: 24px;
         box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.3);
     }
+
     div.body {
         margin: 0px;
     }
+
     div.footer {
         margin: 0px;
     }
@@ -27,6 +30,7 @@
         text-align: center;
     }
 </style>
+
 <body>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css" rel="stylesheet">
@@ -46,7 +50,24 @@
         <p class=copyright>© 2023 Dark Tornado, All rights reserved.</p>
     </div>
     <script>
-        
+        fetch('https://api.darktornado.net/subway/jp/skyliner')
+            .then((response) => response.json())
+            .then((data) => {
+                applyData(data);
+            });
+
+        function applyData(data) {
+            var src = '';
+            data.forEach((e) => {
+                src += '<tr>';
+                src += '<td class=train>↑</td>';
+                src += '<td class=line></td>';
+                src += '<td class=train>↓</td>';
+                src += '<td class=station>' + e.stn + '</td>';
+                src += '</tr>';
+            });
+            document.getElementById('data').innerHTML = src;
+        }
     </script>
 </body>
 
