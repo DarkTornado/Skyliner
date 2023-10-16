@@ -57,6 +57,10 @@
         border-left: 1px solid #BDBDBD;
     }
 
+    i {
+        color: #000000;
+    }
+
 
     p.copyright {
         text-align: center;
@@ -92,9 +96,9 @@
             var src = '';
             data.forEach((e) => {
                 src += '<tr>';
-                src += '<td class=train>↑</td>';
+                src += '<td class=train>' + (e.up[0] ? '<i class=\'material-icons\'>&#xE535;</i>' : '↑') + '</td>';
                 src += '<td class=line></td>';
-                src += '<td class=train>↓</td>';
+                src += '<td class=train>' + (e.dn[0] ? '<i class=\'material-icons\'>&#xE535;</i>' : '↓') + '</td>';
                 src += '<td class=station>' + e.stn + '</td>';
                 src += '</tr>';
             });
