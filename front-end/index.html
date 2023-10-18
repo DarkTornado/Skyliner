@@ -51,7 +51,6 @@
     td.line {
         padding: 0px;
         width: 3px;
-        background-color: #0A3788;
     }
 
     td.station {
@@ -95,10 +94,13 @@
 
         function applyData(data) {
             var src = '';
-            data.forEach((e) => {
+            var color = '#0A3788';
+            data.forEach((e, i) => {
+                if (i == 10) color = '#FF8620';
+                if (i == 26) color = '#0A3788';
                 src += '<tr>';
                 src += '<td class=train>' + (e.up[0] ? '<i class=\'material-icons\'>&#xE535;</i>' : '↑') + '</td>';
-                src += '<td class=line></td>';
+                src += '<td class=line style="background-color: '+color+';"></td>';
                 src += '<td class=train>' + (e.dn[0] ? '<i class=\'material-icons\'>&#xE535;</i>' : '↓') + '</td>';
                 src += '<td class=station>' + e.stn + '</td>';
                 src += '</tr>';
